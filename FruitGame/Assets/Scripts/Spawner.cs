@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Spawner : MonoBehaviour
 {
+    [SerializeField] TMP_Text _scoreTxt;
+
     [SerializeField] List<Fruit> fruitPrefabs;
 
     [SerializeField] List<Fruit> spawnedFruits;
@@ -12,6 +15,9 @@ public class Spawner : MonoBehaviour
     [SerializeField] Fruit _nextDropFruit;
 
     [SerializeField] Fruit.Type _nowMaxSpawnType = Fruit.Type.Cherry;
+
+
+    int score = 0;
 
     [SerializeField] Dictionary<Fruit.Type, Fruit.Type[]> _gameRule = new Dictionary<Fruit.Type, Fruit.Type[]>()
     {
@@ -31,20 +37,47 @@ public class Spawner : MonoBehaviour
             new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon } },
 
         { Fruit.Type.Apple,
-            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon, Fruit.Type.Orange } },
+            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon} },
 
         { Fruit.Type.Pear,
-            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon, Fruit.Type.Orange, Fruit.Type.Apple } },
+            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon} },
 
         { Fruit.Type.Watermelon,
-            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon, Fruit.Type.Orange, Fruit.Type.Apple, Fruit.Type.Pear } },
+            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon} },
 
         { Fruit.Type.Banana,
-            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon, Fruit.Type.Orange, Fruit.Type.Apple, Fruit.Type.Pear, Fruit.Type.Watermelon } },
+            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon} },
 
         { Fruit.Type.Pineapple,
-            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon, Fruit.Type.Orange, Fruit.Type.Apple, Fruit.Type.Pear, Fruit.Type.Watermelon, Fruit.Type.Banana } }
+            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon} },
     };
+
+    [SerializeField]
+    Dictionary<Fruit.Type, int> _gameScore = new Dictionary<Fruit.Type, int>()
+    {
+        { Fruit.Type.Cherry, 1},
+
+        { Fruit.Type.Strawberry, 2},
+
+        { Fruit.Type.Grape, 3},
+
+        { Fruit.Type.Lemon, 4},
+
+        { Fruit.Type.Orange, 5},
+
+        { Fruit.Type.Apple, 6},
+
+        { Fruit.Type.Pear, 7},
+
+        { Fruit.Type.Watermelon, 8},
+
+        { Fruit.Type.Banana, 9},
+
+        { Fruit.Type.Pineapple, 10},
+    };
+
+    [SerializeField] GameObject _endPanel;
+    [SerializeField] GameObject _clear;
 
     public bool IsFruitYPosAboveLine(float endYPos)
     {
@@ -57,6 +90,18 @@ public class Spawner : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void IsClear()
+    {
+        for (int i = 0; i < spawnedFruits.Count; i++)
+        {
+            if (spawnedFruits[i].FruitType == Fruit.Type.Pineapple)
+            {
+                _clear.SetActive(true);
+                _endPanel.SetActive(true);
+            }
+        }
     }
 
     public Fruit.Type ReturnRandomSpawnType()
@@ -109,8 +154,13 @@ public class Spawner : MonoBehaviour
             nextTypeToInt = maxTypeToInt;
         }
 
+        score += _gameScore[mytype];
+        _scoreTxt.text = score.ToString(); // 여기서 스코어 추가
+
         Fruit.Type nextType = (Fruit.Type)nextTypeToInt; // 다음 타입으로 변환
         SpawnFruit(nextType, pos);
+
+        IsClear();
     }
 
     Fruit SpawnFruit(Fruit.Type type, Vector3 pos)

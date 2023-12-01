@@ -16,11 +16,11 @@ public class Fruit : MonoBehaviour
         Pear,
         Watermelon,
         Banana,
-        Pineapple
+        Pineapple,
     }
 
     [SerializeField] Type _fruitType;
-    public Type FruitType { get { return _fruitType; } set { _fruitType = value; } }
+    public Type FruitType { get { return _fruitType; }}
 
     [SerializeField] bool _canChange = true;
     public bool CanChange { get { return _canChange; } set { _canChange = value; } }

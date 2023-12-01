@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6341370290707839488
+--- !u!1 &6436537370521278136
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6341370290707839516}
-  - component: {fileID: 6341370290707839517}
-  - component: {fileID: 6341370290707839490}
-  - component: {fileID: 6341370290707839491}
-  - component: {fileID: 566910329008012999}
+  - component: {fileID: 6436537370521278116}
+  - component: {fileID: 6436537370521278117}
+  - component: {fileID: 6436537370521278139}
+  - component: {fileID: 471804821480673919}
+  - component: {fileID: 6877002794852491829}
   m_Layer: 0
   m_Name: Pineapple
   m_TagString: Fruit
@@ -20,28 +20,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6341370290707839516
+--- !u!4 &6436537370521278116
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6341370290707839488}
+  m_GameObject: {fileID: 6436537370521278136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.4310913, y: 1.1279907, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6341370290707839517
+--- !u!212 &6436537370521278117
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6341370290707839488}
+  m_GameObject: {fileID: 6436537370521278136}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,10 +73,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1023214383
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 477632219, guid: f135213ca67dc374d85397b349c6da1a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5396fe17d4bf3de4a9ce62e49ee0e4a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,30 +87,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &6341370290707839490
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6341370290707839488}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.22285764}
-  serializedVersion: 2
-  m_Radius: 1.1471425
---- !u!50 &6341370290707839491
+--- !u!50 &6436537370521278139
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6341370290707839488}
+  m_GameObject: {fileID: 6436537370521278136}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -124,13 +108,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &566910329008012999
+--- !u!114 &471804821480673919
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6341370290707839488}
+  m_GameObject: {fileID: 6436537370521278136}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d24a22fe8c7552740b7d79e4f8a2c0b4, type: 3}
@@ -138,4 +122,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fruitType: 9
   _canChange: 1
-  rigid: {fileID: 6341370290707839491}
+  rigid: {fileID: 6436537370521278139}
+--- !u!70 &6877002794852491829
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436537370521278136}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.06586934, y: -0.009831438}
+  m_Size: {x: 9.518703, y: 8.948493}
+  m_Direction: 1

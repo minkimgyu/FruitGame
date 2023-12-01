@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4215326130943988626}
   - component: {fileID: 4215326130943988625}
-  - component: {fileID: 4215326130943988624}
   - component: {fileID: 4215326130943988631}
   - component: {fileID: -384644694811095331}
+  - component: {fileID: 5110657682437301519}
   m_Layer: 0
   m_Name: Pear
   m_TagString: Fruit
@@ -73,10 +73,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1023214383
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1342855156, guid: 5cc727eb1265c8c4fa92ae8be4cdd2ef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c227a831db18a474b8ae5e3e3cd27b36, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,22 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &4215326130943988624
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4215326130943988630}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.92
 --- !u!50 &4215326130943988631
 Rigidbody2D:
   serializedVersion: 4
@@ -139,3 +123,19 @@ MonoBehaviour:
   _fruitType: 6
   _canChange: 1
   rigid: {fileID: 4215326130943988631}
+--- !u!70 &5110657682437301519
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215326130943988630}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06221533, y: 0.005186081}
+  m_Size: {x: 4.5352297, y: 5.560772}
+  m_Direction: 0

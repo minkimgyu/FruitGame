@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5709528682993366037}
   - component: {fileID: 5709528682993366036}
-  - component: {fileID: 5709528682993366027}
   - component: {fileID: 5709528682993366026}
   - component: {fileID: 1216905696590147790}
+  - component: {fileID: 8759464772459650237}
   m_Layer: 0
   m_Name: Watermelon
   m_TagString: Fruit
@@ -73,10 +73,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1023214383
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: -643183901, guid: 5cc727eb1265c8c4fa92ae8be4cdd2ef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1383782773085734fac1dc7cff59fc90, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,22 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &5709528682993366027
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5709528682993366025}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.37
 --- !u!50 &5709528682993366026
 Rigidbody2D:
   serializedVersion: 4
@@ -139,3 +123,19 @@ MonoBehaviour:
   _fruitType: 7
   _canChange: 1
   rigid: {fileID: 5709528682993366026}
+--- !u!70 &8759464772459650237
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5709528682993366025}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 5.78, y: 7.06}
+  m_Direction: 0

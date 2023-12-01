@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3044848498483738851}
   - component: {fileID: 3044848498483738850}
-  - component: {fileID: 3044848498483738853}
   - component: {fileID: 3044848498483738852}
   - component: {fileID: -1274131162695719265}
+  - component: {fileID: 3645806321161448823}
   m_Layer: 0
   m_Name: Strawberry
   m_TagString: Fruit
@@ -73,10 +73,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1023214383
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2084600745, guid: 5cc727eb1265c8c4fa92ae8be4cdd2ef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b85d510230650d443a09629406f697a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,22 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &3044848498483738853
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3044848498483738855}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.52
 --- !u!50 &3044848498483738852
 Rigidbody2D:
   serializedVersion: 4
@@ -139,3 +123,19 @@ MonoBehaviour:
   _fruitType: 1
   _canChange: 1
   rigid: {fileID: 3044848498483738852}
+--- !u!70 &3645806321161448823
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3044848498483738855}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.06, y: 1.28}
+  m_Direction: 0

@@ -15,7 +15,15 @@ public class GameManager : MonoBehaviour
     Timer _dropTimer;
     bool _canDrop;
 
+    [SerializeField] float _minX = -14;
+    [SerializeField] float _maxX = 14.5f;
+
     [SerializeField] float _delayTime;
+    [SerializeField] Transform _cloud;
+
+    [SerializeField] GameObject _endPanel;
+    [SerializeField] GameObject _clear;
+    [SerializeField] GameObject _over;
 
     private void Start()
     {
@@ -32,18 +40,48 @@ public class GameManager : MonoBehaviour
         OnSpawnRequested?.Invoke();
     }
 
+    public void GoToMenuScene()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     void CheckGameOver()
     {
         bool canGameOver = IsFruitYPosAboveLine(_endPoint.position.y);
         if (canGameOver == true)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            _over.SetActive(true);
+            _endPanel.SetActive(true);
         }
+    }
+
+    void MoveCloud()
+    {
+        Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
+               Input.mousePosition.y, -Camera.main.transform.position.z));
+
+        if (point.x > _maxX)
+        {
+            point.x = _maxX;
+        }
+        else if(point.x < _minX)
+        {
+            point.x = _minX;
+        }
+
+        _cloud.position = new Vector3(point.x, _cloud.position.y, _cloud.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
+        MoveCloud();
+
         _dropTimer.Update();
 
         if (_dropTimer.IsFinish)
@@ -61,6 +99,15 @@ public class GameManager : MonoBehaviour
         {
             Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
                 Input.mousePosition.y, -Camera.main.transform.position.z));
+
+            if (point.x > _maxX)
+            {
+                point.x = _maxX;
+            }
+            else if (point.x < _minX)
+            {
+                point.x = _minX;
+            }
 
             OnDropRequested?.Invoke(new Vector3(point.x, _endPoint.position.y, point.z));
             _dropTimer.Start(_delayTime);

@@ -44,3 +44,27 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Line
+    uniqueID: 605517629
+    locked: 0
+  - name: Bowl
+    uniqueID: 2848628925
+    locked: 0
+  - name: WaterBackground
+    uniqueID: 3305849359
+    locked: 0
+  - name: Rock
+    uniqueID: 1609037655
+    locked: 0
+  - name: Water
+    uniqueID: 2198823099
+    locked: 0
+  - name: Character
+    uniqueID: 3271752913
+    locked: 0
+  - name: Leap
+    uniqueID: 2887378889
+    locked: 0
+  - name: Cloud
+    uniqueID: 3624851771
+    locked: 0
