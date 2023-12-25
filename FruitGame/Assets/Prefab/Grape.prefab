@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 1963591254715278473}
   - component: {fileID: -6829676110766393786}
   - component: {fileID: 8887562027216905140}
+  - component: {fileID: -7435114829665190989}
   m_Layer: 0
   m_Name: Grape
-  m_TagString: Fruit
+  m_TagString: Trickle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1023214383
-  m_SortingLayer: 6
-  m_SortingOrder: 0
+  m_SortingLayerID: -1446338371
+  m_SortingLayer: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 814e7e8cae8527e4aa0bfd7adbbaca90, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -99,11 +100,17 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -120,9 +127,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24a22fe8c7552740b7d79e4f8a2c0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRender: {fileID: 1963591254715278475}
+  _readySortingLayerName: Cloud
+  _actionSortingLayerName: Bowl
   _fruitType: 2
   _canChange: 1
-  rigid: {fileID: 1963591254715278473}
+  _rigid: {fileID: 1963591254715278473}
+  _collider: {fileID: 8887562027216905140}
 --- !u!70 &8887562027216905140
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -133,9 +144,40 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.020195484, y: -0.0044879913}
   m_Size: {x: 1.5348825, y: 1.8499107}
   m_Direction: 0
+--- !u!114 &-7435114829665190989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963591254715278472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d759f40a26d29f3448610c03c62af2e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

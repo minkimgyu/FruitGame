@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 6436537370521278139}
   - component: {fileID: 471804821480673919}
   - component: {fileID: 6877002794852491829}
+  - component: {fileID: -5802494591173410278}
   m_Layer: 0
   m_Name: Pineapple
-  m_TagString: Fruit
+  m_TagString: Trickle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1023214383
-  m_SortingLayer: 6
-  m_SortingOrder: 0
+  m_SortingLayerID: -1446338371
+  m_SortingLayer: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 5396fe17d4bf3de4a9ce62e49ee0e4a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -99,11 +100,17 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -120,9 +127,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24a22fe8c7552740b7d79e4f8a2c0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRender: {fileID: 6436537370521278117}
+  _readySortingLayerName: Cloud
+  _actionSortingLayerName: Bowl
   _fruitType: 9
   _canChange: 1
-  rigid: {fileID: 6436537370521278139}
+  _rigid: {fileID: 6436537370521278139}
+  _collider: {fileID: 6877002794852491829}
 --- !u!70 &6877002794852491829
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -133,9 +144,40 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.06586934, y: -0.009831438}
   m_Size: {x: 9.518703, y: 8.948493}
   m_Direction: 1
+--- !u!114 &-5802494591173410278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436537370521278136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d759f40a26d29f3448610c03c62af2e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -2,82 +2,95 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
+
+using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField] TMP_Text _scoreTxt;
 
-    [SerializeField] List<Fruit> fruitPrefabs;
+    [SerializeField] List<Trickle> fruitPrefabs;
 
-    [SerializeField] List<Fruit> spawnedFruits;
+    [SerializeField] List<Trickle> spawnedFruits;
 
     [SerializeField] Transform _nextFruitSpawnPoint;
-    [SerializeField] Fruit _nextDropFruit;
+    [SerializeField] Trickle _nextDropFruit;
 
-    [SerializeField] Fruit.Type _nowMaxSpawnType = Fruit.Type.Cherry;
+    [SerializeField] Trickle.Type _nowMaxSpawnType = Trickle.Type.Cherry;
 
 
     int score = 0;
 
-    [SerializeField] Dictionary<Fruit.Type, Fruit.Type[]> _gameRule = new Dictionary<Fruit.Type, Fruit.Type[]>()
+    [SerializeField] Dictionary<Trickle.Type, Trickle.Type[]> _gameRule = new Dictionary<Trickle.Type, Trickle.Type[]>()
     {
-        { Fruit.Type.Cherry,
-            new Fruit.Type[]{ Fruit.Type.Cherry } },
+        { Trickle.Type.Cherry,
+            new Trickle.Type[]{ Trickle.Type.Cherry } },
 
-        { Fruit.Type.Strawberry,
-            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry } },
+        { Trickle.Type.Strawberry,
+            new Trickle.Type[]{ Trickle.Type.Cherry, Trickle.Type.Strawberry } },
 
-        { Fruit.Type.Grape,
-            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape } },
+        { Trickle.Type.Grape,
+            new Trickle.Type[]{ Trickle.Type.Cherry, Trickle.Type.Strawberry, Trickle.Type.Grape } },
 
-        { Fruit.Type.Lemon,
-            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon } },
+        { Trickle.Type.Lemon,
+            new Trickle.Type[]{ Trickle.Type.Cherry, Trickle.Type.Strawberry, Trickle.Type.Grape, Trickle.Type.Lemon } },
 
-        { Fruit.Type.Orange,
-            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon } },
+        { Trickle.Type.Orange,
+            new Trickle.Type[]{ Trickle.Type.Cherry, Trickle.Type.Strawberry, Trickle.Type.Grape, Trickle.Type.Lemon } },
 
-        { Fruit.Type.Apple,
-            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon} },
+        { Trickle.Type.Apple,
+            new Trickle.Type[]{ Trickle.Type.Cherry, Trickle.Type.Strawberry, Trickle.Type.Grape, Trickle.Type.Lemon} },
 
-        { Fruit.Type.Pear,
-            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon} },
+        { Trickle.Type.Pear,
+            new Trickle.Type[]{ Trickle.Type.Cherry, Trickle.Type.Strawberry, Trickle.Type.Grape, Trickle.Type.Lemon} },
 
-        { Fruit.Type.Watermelon,
-            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon} },
+        { Trickle.Type.Watermelon,
+            new Trickle.Type[]{ Trickle.Type.Cherry, Trickle.Type.Strawberry, Trickle.Type.Grape, Trickle.Type.Lemon} },
 
-        { Fruit.Type.Banana,
-            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon} },
+        { Trickle.Type.Banana,
+            new Trickle.Type[]{ Trickle.Type.Cherry, Trickle.Type.Strawberry, Trickle.Type.Grape, Trickle.Type.Lemon} },
 
-        { Fruit.Type.Pineapple,
-            new Fruit.Type[]{ Fruit.Type.Cherry, Fruit.Type.Strawberry, Fruit.Type.Grape, Fruit.Type.Lemon} },
+        { Trickle.Type.Pineapple,
+            new Trickle.Type[]{ Trickle.Type.Cherry, Trickle.Type.Strawberry, Trickle.Type.Grape, Trickle.Type.Lemon} },
     };
 
     [SerializeField]
-    Dictionary<Fruit.Type, int> _gameScore = new Dictionary<Fruit.Type, int>()
+    Dictionary<Trickle.Type, int> _gameScore = new Dictionary<Trickle.Type, int>()
     {
-        { Fruit.Type.Cherry, 1},
+        { Trickle.Type.Cherry, 1},
 
-        { Fruit.Type.Strawberry, 2},
+        { Trickle.Type.Strawberry, 2},
 
-        { Fruit.Type.Grape, 3},
+        { Trickle.Type.Grape, 3},
 
-        { Fruit.Type.Lemon, 4},
+        { Trickle.Type.Lemon, 4},
 
-        { Fruit.Type.Orange, 5},
+        { Trickle.Type.Orange, 5},
 
-        { Fruit.Type.Apple, 6},
+        { Trickle.Type.Apple, 6},
 
-        { Fruit.Type.Pear, 7},
+        { Trickle.Type.Pear, 7},
 
-        { Fruit.Type.Watermelon, 8},
+        { Trickle.Type.Watermelon, 8},
 
-        { Fruit.Type.Banana, 9},
+        { Trickle.Type.Banana, 9},
 
-        { Fruit.Type.Pineapple, 10},
+        { Trickle.Type.Pineapple, 10},
     };
 
     [SerializeField] GameObject _endPanel;
     [SerializeField] GameObject _clear;
+
+    Action OnWaterDecreaseRequested;
+
+    private void Start()
+    {
+        WaterController waterController = GameObject.FindWithTag("WaterController").GetComponent<WaterController>();
+        if (waterController == null) return;
+
+        OnWaterDecreaseRequested = waterController.OnWaterDecreaseRequested;
+    }
 
     public bool IsFruitYPosAboveLine(float endYPos)
     {
@@ -96,7 +109,7 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < spawnedFruits.Count; i++)
         {
-            if (spawnedFruits[i].FruitType == Fruit.Type.Pineapple)
+            if (spawnedFruits[i].FruitType == Trickle.Type.Pineapple)
             {
                 _clear.SetActive(true);
                 _endPanel.SetActive(true);
@@ -104,17 +117,17 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public Fruit.Type ReturnRandomSpawnType()
+    public Trickle.Type ReturnRandomSpawnType()
     {
         Debug.Log(_nowMaxSpawnType);
 
-        Fruit.Type[] tmpTypes = _gameRule[_nowMaxSpawnType];
+        Trickle.Type[] tmpTypes = _gameRule[_nowMaxSpawnType];
         int randomIndex = Random.Range(0, tmpTypes.Length);
 
         return tmpTypes[randomIndex];
     }
 
-    void SetMaxSpawnFruitType(Fruit.Type type)
+    void SetMaxSpawnFruitType(Trickle.Type type)
     {
         int getTypeToInt = (int)type;
         int storedTypeToInt = (int)_nowMaxSpawnType;
@@ -122,18 +135,18 @@ public class Spawner : MonoBehaviour
         if(getTypeToInt > storedTypeToInt) _nowMaxSpawnType = type;
     }
 
-    Fruit ReturnFruitUsingType(Fruit.Type type)
+    Trickle ReturnFruitUsingType(Trickle.Type type)
     {
         return fruitPrefabs.Find(x => x.FruitType == type);
     }
 
     public void SpawnNextDropFruit()
     {
-        Fruit.Type type = ReturnRandomSpawnType();
+        Trickle.Type type = ReturnRandomSpawnType();
 
-        Fruit fruit = SpawnFruit(type, _nextFruitSpawnPoint.position);
+        Trickle fruit = SpawnFruit(type, _nextFruitSpawnPoint.position);
         _nextDropFruit = fruit;
-        _nextDropFruit.OnChangeGravityScaleRequested(0);
+        _nextDropFruit.OnChangeGravityScaleRequested(false, 0);
     }
 
     int ReturnMaxEnumValueToInt<T>()
@@ -143,9 +156,9 @@ public class Spawner : MonoBehaviour
         return tmp;
     }
 
-    public void SpawnFruitWhenMerge(Fruit.Type mytype, Vector3 pos)
+    public void SpawnFruitWhenMerge(Trickle.Type mytype, Vector3 pos)
     {
-        int maxTypeToInt = ReturnMaxEnumValueToInt<Fruit.Type>();
+        int maxTypeToInt = ReturnMaxEnumValueToInt<Trickle.Type>();
 
         int nextTypeToInt = (int)mytype + 1;
 
@@ -157,27 +170,27 @@ public class Spawner : MonoBehaviour
         score += _gameScore[mytype];
         _scoreTxt.text = score.ToString(); // 여기서 스코어 추가
 
-        Fruit.Type nextType = (Fruit.Type)nextTypeToInt; // 다음 타입으로 변환
+        Trickle.Type nextType = (Trickle.Type)nextTypeToInt; // 다음 타입으로 변환
         SpawnFruit(nextType, pos);
 
         IsClear();
     }
 
-    Fruit SpawnFruit(Fruit.Type type, Vector3 pos)
+    Trickle SpawnFruit(Trickle.Type type, Vector3 pos)
     {
         SetMaxSpawnFruitType(type);
 
-        Fruit fruit = ReturnFruitUsingType(type);
+        Trickle fruit = ReturnFruitUsingType(type);
         if (fruit == null) return null;
 
-        Fruit spawnedFruit = Instantiate(fruit, pos, Quaternion.identity);
-        spawnedFruit.Initialize(SpawnFruitWhenMerge, DestroyFruitInList);
+        Trickle spawnedFruit = Instantiate(fruit, pos, Quaternion.identity);
+        spawnedFruit.Initialize(SpawnFruitWhenMerge, DestroyFruitInList, OnWaterDecreaseRequested);
         spawnedFruits.Add(spawnedFruit);
 
         return spawnedFruit;
     }
 
-    public void DestroyFruitInList(Fruit me, Fruit other)
+    public void DestroyFruitInList(Trickle me, Trickle other)
     {
         spawnedFruits.Remove(me);
         spawnedFruits.Remove(other);
@@ -191,6 +204,13 @@ public class Spawner : MonoBehaviour
         if (_nextDropFruit == null) return;
 
         _nextDropFruit.transform.position = position;
-        _nextDropFruit.OnChangeGravityScaleRequested(2);
+        _nextDropFruit.OnChangeGravityScaleRequested(true, 1);
+
+        _nextDropFruit = null; // 다음 과일 초기화
+    }
+
+    public bool CanDropNextFruit()
+    {
+        return _nextDropFruit != null;
     }
 }

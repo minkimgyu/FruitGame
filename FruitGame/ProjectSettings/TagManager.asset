@@ -7,6 +7,10 @@ TagManager:
   - Fruit
   - Spawner
   - GameManager
+  - Spring
+  - FallingObject
+  - Trickle
+  - WaterController
   layers:
   - Default
   - TransparentFX
