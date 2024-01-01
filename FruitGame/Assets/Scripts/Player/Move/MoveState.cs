@@ -14,8 +14,6 @@ public class MoveState : State
 
     public override void OnStateUpdate()
     {
-        if (_storedPlayer.IsGameOver() == true) return;
-
         MoveCloud();
     }
 
@@ -37,9 +35,20 @@ public class MoveState : State
             = new Vector3(point.x, _storedPlayer.Cloud.position.y, _storedPlayer.Cloud.position.z);
     }
 
+    bool GoToStopState()
+    {
+        bool isGameClear = _storedPlayer.IsGameClear.Invoke();
+        bool IsGamePause = _storedPlayer.IsGamePause.Invoke();
+        bool IsGameOver = _storedPlayer.IsGameOver.Invoke();
+        bool nowMouseStop = Input.GetAxisRaw("Mouse X") == 0;
+
+        return IsGameOver || isGameClear || IsGamePause || nowMouseStop;
+    }
+
     public override void CheckStateChange()
     {
-        if (Input.GetAxisRaw("Mouse X") == 0) // 마우스 움직임 정지 시
+        // 일시 정지, 게임 오버, 게임 클리어시 강제로 Stop State로 이동
+        if (GoToStopState()) // 추가로 마우스 움직임 정지 시
         {
             _storedPlayer.MovementFSM.SetState(PlayerController.MovementState.Stop);
         }

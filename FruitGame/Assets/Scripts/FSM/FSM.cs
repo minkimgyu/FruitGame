@@ -10,7 +10,8 @@ namespace FSM
 
         public override void OnMessageReceived() { }
 
-        public override void OnMessageReceived(Trickle.Message message, Trickle trickle) { }
+        public override void OnMessageReceived(Trickle.Message message, Collision2D collision) { }
+        // 여기에 메시지도 같이 전달 ㄱㄱㄱ
 
         public override void OnStateFixedUpdate() { }
 
@@ -32,8 +33,8 @@ namespace FSM
 
         public abstract void OnMessageReceived();
 
-        public abstract void OnMessageReceived(Trickle.Message message, Trickle trickle);
-
+        public abstract void OnMessageReceived(Trickle.Message message, Collision2D collision); 
+        // 여기에 메시지도 같이 전달 ㄱㄱㄱ
 
         public abstract void OnStateFixedUpdate();
 
@@ -41,6 +42,7 @@ namespace FSM
 
         public abstract void OnStateCollision2DEnter(Collision2D collision);
 
+        public abstract void OnSpawnRequested(); // 오브젝트가
 
 
         public abstract void OnStateEnter();
@@ -53,6 +55,10 @@ namespace FSM
     public class StateMachine<T>
     {
         Dictionary<T, BaseState> _stateDictionary = new Dictionary<T, BaseState>();
+
+        T _currentStateName;
+
+        public T CurrentStateName { get { return _currentStateName; } }
 
         //현재 상태를 담는 프로퍼티.
         BaseState _currentState;
@@ -101,16 +107,17 @@ namespace FSM
 
         public bool SetState(T stateName)
         {
+            _currentStateName = stateName;
             return ChangeState(_stateDictionary[stateName]);
         }
 
-        public bool SetState(T stateName, Trickle.Message message, Trickle trickle)
+        public bool SetState(T stateName, Trickle.Message message, Collision2D collision)
         {
-            return ChangeState(_stateDictionary[stateName], message, trickle);
+            _currentStateName = stateName;
+            return ChangeState(_stateDictionary[stateName], message, collision);
         }
 
         #endregion
-
 
 
         #region ChangeState
@@ -140,7 +147,7 @@ namespace FSM
             return true;
         }
 
-        bool ChangeState(BaseState state, Trickle.Message message, Trickle trickle)
+        bool ChangeState(BaseState state, Trickle.Message message, Collision2D collision)
         {
             if (_stateDictionary.ContainsValue(state) == false) return false;
 
@@ -159,7 +166,7 @@ namespace FSM
 
             if (_currentState != null) //새 상태의 Enter를 호출한다.
             {
-                _currentState.OnMessageReceived(message, trickle);
+                _currentState.OnMessageReceived(message, collision);
                 _currentState.OnStateEnter();
             }
 

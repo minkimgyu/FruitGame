@@ -15,14 +15,6 @@ public class SpawnState : State
     public override void OnStateEnter()
     {
         _storedPlayer.OnSpawnRequested();
-
-        bool canGameOver = _storedPlayer.IsFruitYPosAboveLine(_storedPlayer.EndPoint.position.y);
-
-        if (canGameOver == true && _storedPlayer?.IsGameOver() == false)
-        {
-            _storedPlayer?.OnGameOverRequested(); // 게임 종료
-        }
-
         _storedPlayer.ActionFSM.SetState(PlayerController.ActionState.Idle);
     }
 }

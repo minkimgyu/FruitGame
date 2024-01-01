@@ -46,10 +46,13 @@ public class PlayerController : MonoBehaviour
     public Func<bool> OnCanDropRequested;
     public Action<Vector3> OnDropRequested;
     public Action OnSpawnRequested;
-    public Func<float, bool> IsFruitYPosAboveLine;
 
     public Action OnGameOverRequested;
     public Func<bool> IsGameOver;
+
+    public Action OnGamePauseRequested;
+    public Func<bool> IsGamePause;
+    public Func<bool> IsGameClear;
 
     // Start is called before the first frame update
     void Start()
@@ -62,13 +65,16 @@ public class PlayerController : MonoBehaviour
         OnGameOverRequested = gameManager.GameOver;
         IsGameOver = gameManager.IsGameOver;
 
-         Spawner spawner = GameObject.FindWithTag("Spawner").GetComponent<Spawner>();
+        OnGamePauseRequested = gameManager.PauseGame;
+        IsGamePause = gameManager.IsPauseGame;
+        IsGameClear = gameManager.IsGameClear;
+
+        Spawner spawner = GameObject.FindWithTag("Spawner").GetComponent<Spawner>();
         if (spawner == null) return;
 
         OnDropRequested = spawner.DropNextFruit;
         OnSpawnRequested = spawner.SpawnNextDropFruit;
         OnCanDropRequested = spawner.CanDropNextFruit;
-        IsFruitYPosAboveLine = spawner.IsFruitYPosAboveLine;
 
         InitializeFSM();
 

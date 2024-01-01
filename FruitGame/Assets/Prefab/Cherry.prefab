@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6178735730547775622}
   - component: {fileID: -6707657434965785341}
   - component: {fileID: 2093294840}
-  - component: {fileID: 9112472676934308320}
   m_Layer: 0
   m_Name: Cherry
   m_TagString: Trickle
@@ -113,7 +112,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &-6707657434965785341
 MonoBehaviour:
@@ -169,15 +168,3 @@ CapsuleCollider2D:
   m_Offset: {x: -0.006842613, y: 0.0011405945}
   m_Size: {x: 0.61540794, y: 0.7669983}
   m_Direction: 0
---- !u!114 &9112472676934308320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6178735730547775618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d759f40a26d29f3448610c03c62af2e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

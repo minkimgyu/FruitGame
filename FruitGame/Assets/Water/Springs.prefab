@@ -75,8 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,6 +103,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 6492884727488852178}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &2140415429854518075
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -214,8 +215,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -243,6 +243,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 1202318003796417917}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &4083848505365445544
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -353,8 +355,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -382,6 +383,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 428579270251243261}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &2269849441914696519
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -492,8 +495,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -521,6 +523,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 2333217723414318145}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &8319903168201739183
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -631,8 +635,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -660,6 +663,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 8117628945394029612}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &942865808928022229
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -770,8 +775,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -799,6 +803,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 4964790289795285542}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &3158147224622281941
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -909,8 +915,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -938,6 +943,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 6800125204906316471}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &3412074462230423722
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1048,8 +1055,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -1077,6 +1083,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 3180977453841355746}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &1871321119907443439
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1187,8 +1195,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -1216,6 +1223,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 6599323672470343419}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &6760002770785775808
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1326,8 +1335,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -1355,6 +1363,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 5140512219435609402}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &3155394120425167302
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1465,8 +1475,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -1494,6 +1503,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 5756457906109084475}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &6501040376161938791
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1604,8 +1615,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -1633,6 +1643,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 3958769413013305356}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &6698644712912599349
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1743,8 +1755,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -1772,6 +1783,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 6637321261861161940}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &8968177088251832721
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1882,8 +1895,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -1911,6 +1923,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 1045012205359745903}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &2208395579578638603
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2021,8 +2035,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -2050,6 +2063,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 6257031902033088319}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &3719486416706920752
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2160,8 +2175,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -2189,6 +2203,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 6819319110169527013}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &5776150348748735997
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2299,8 +2315,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -2328,6 +2343,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 4302761664633182571}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &1364901981636835801
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2438,8 +2455,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -2467,6 +2483,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 15709007458796309}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &9150124994981545149
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2577,8 +2595,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -2606,6 +2623,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 3330947867211074760}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &4967781879416999660
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2716,8 +2735,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -2745,6 +2763,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 7397010453969550356}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &1228342744603611568
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2794,7 +2814,7 @@ GameObject:
   - component: {fileID: 7088388520930436157}
   - component: {fileID: 7088388520930436153}
   - component: {fileID: 7088388520930436158}
-  m_Layer: 4
+  m_Layer: 0
   m_Name: Springs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3117,8 +3137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteShapeController: {fileID: 7088388520930436156}
-  wavePointPref: {fileID: 4731394779048943225, guid: d4c132610acabe7498605c7454978ab7,
-    type: 3}
+  wavePointPref: {fileID: 4731394779048943225, guid: d4c132610acabe7498605c7454978ab7, type: 3}
   wavePoints: {fileID: 7088388521766485400}
   WavesCount: 20
   springStiffness: 0.1
@@ -3321,8 +3340,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -3350,6 +3368,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 5120937310744378201}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &2057135600329851586
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3460,8 +3480,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8392157, g: 0.043137256, b: 0.27450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -3489,6 +3508,8 @@ MonoBehaviour:
   height: 5
   springTransform: {fileID: 3115248193478683789}
   spriteShapeController: {fileID: 7088388520930436156}
+  dropItemTag: 
+  _bubble: {fileID: 0}
 --- !u!58 &2565662580723626393
 CircleCollider2D:
   m_ObjectHideFlags: 0

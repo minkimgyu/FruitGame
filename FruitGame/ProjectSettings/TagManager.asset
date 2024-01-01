@@ -11,6 +11,9 @@ TagManager:
   - FallingObject
   - Trickle
   - WaterController
+  - FxTemporaire
+  - Water
+  - HighlightShower
   layers:
   - Default
   - TransparentFX
@@ -18,8 +21,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - CheckGameOver
+  - TrickleOnLand
   - 
   - 
   - 
@@ -71,4 +74,13 @@ TagManager:
     locked: 0
   - name: Cloud
     uniqueID: 3624851771
+    locked: 0
+  - name: BelowEffect
+    uniqueID: 1740292575
+    locked: 0
+  - name: Highlight
+    uniqueID: 2212611285
+    locked: 0
+  - name: Effect
+    uniqueID: 2954275553
     locked: 0

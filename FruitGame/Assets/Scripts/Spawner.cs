@@ -50,9 +50,6 @@ public class Spawner : MonoBehaviour
 
         { Trickle.Type.Banana,
             new Trickle.Type[]{ Trickle.Type.Cherry, Trickle.Type.Strawberry, Trickle.Type.Grape, Trickle.Type.Lemon} },
-
-        { Trickle.Type.Pineapple,
-            new Trickle.Type[]{ Trickle.Type.Cherry, Trickle.Type.Strawberry, Trickle.Type.Grape, Trickle.Type.Lemon} },
     };
 
     [SerializeField]
@@ -75,14 +72,13 @@ public class Spawner : MonoBehaviour
         { Trickle.Type.Watermelon, 8},
 
         { Trickle.Type.Banana, 9},
-
-        { Trickle.Type.Pineapple, 10},
     };
 
-    [SerializeField] GameObject _endPanel;
-    [SerializeField] GameObject _clear;
+    Action OnGameClearRequested;
 
     Action OnWaterDecreaseRequested;
+
+    Action<Trickle.Type, Trickle> OnShowHighlightRequested;
 
     private void Start()
     {
@@ -90,29 +86,42 @@ public class Spawner : MonoBehaviour
         if (waterController == null) return;
 
         OnWaterDecreaseRequested = waterController.OnWaterDecreaseRequested;
+
+
+        HighlightShower highlightShower = GameObject.FindWithTag("HighlightShower").GetComponent<HighlightShower>();
+        if (highlightShower == null) return;
+
+        OnShowHighlightRequested = highlightShower.ShowHighlightEffect;
+
+        GameManager gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
+        if (gameManager == null) return;
+
+        OnGameClearRequested = gameManager.GameClear;
     }
 
-    public bool IsFruitYPosAboveLine(float endYPos)
+    //public bool IsFruitYPosAboveLine(float endYPos)
+    //{
+    //    for (int i = 0; i < spawnedFruits.Count; i++)
+    //    {
+    //        if(spawnedFruits[i].transform.position.y > endYPos)
+    //        {
+    //            return true;
+    //        }
+    //    }
+
+    //    return false;
+    //}
+
+    public void CheckGameClear()
     {
+        int bananaCount = 0;
+
         for (int i = 0; i < spawnedFruits.Count; i++)
         {
-            if(spawnedFruits[i].transform.position.y > endYPos)
+            if (spawnedFruits[i].FruitType == Trickle.Type.Banana)
             {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public void IsClear()
-    {
-        for (int i = 0; i < spawnedFruits.Count; i++)
-        {
-            if (spawnedFruits[i].FruitType == Trickle.Type.Pineapple)
-            {
-                _clear.SetActive(true);
-                _endPanel.SetActive(true);
+                bananaCount++;
+                if(bananaCount >= 2) OnGameClearRequested?.Invoke();
             }
         }
     }
@@ -146,7 +155,7 @@ public class Spawner : MonoBehaviour
 
         Trickle fruit = SpawnFruit(type, _nextFruitSpawnPoint.position);
         _nextDropFruit = fruit;
-        _nextDropFruit.OnChangeGravityScaleRequested(false, 0);
+        _nextDropFruit.ResetState(Trickle.PositionState.Ready);
     }
 
     int ReturnMaxEnumValueToInt<T>()
@@ -167,13 +176,17 @@ public class Spawner : MonoBehaviour
             nextTypeToInt = maxTypeToInt;
         }
 
-        score += _gameScore[mytype];
+        score += _gameScore[mytype]; // --> 이건 GameManager로 보내기
         _scoreTxt.text = score.ToString(); // 여기서 스코어 추가
 
         Trickle.Type nextType = (Trickle.Type)nextTypeToInt; // 다음 타입으로 변환
-        SpawnFruit(nextType, pos);
+        Trickle fruit = SpawnFruit(nextType, pos);
+        fruit.ResetState(Trickle.PositionState.Land); // Merge시 바로 Land State로 이동
 
-        IsClear();
+        // 여기서 fruit의 타입을 채크해서 만약 마지막 타입인 경우 sortingLayer 바꿔서 효과 주고 일정시간 있다가 꺼주기
+        OnShowHighlightRequested?.Invoke(fruit.FruitType, fruit);
+
+        CheckGameClear();
     }
 
     Trickle SpawnFruit(Trickle.Type type, Vector3 pos)
@@ -204,8 +217,10 @@ public class Spawner : MonoBehaviour
         if (_nextDropFruit == null) return;
 
         _nextDropFruit.transform.position = position;
-        _nextDropFruit.OnChangeGravityScaleRequested(true, 1);
 
+        // 여기에 추상화 사용해서 다른 기능을 넣을 수 있게 해보기
+
+        _nextDropFruit.ResetState(Trickle.PositionState.Falling);
         _nextDropFruit = null; // 다음 과일 초기화
     }
 

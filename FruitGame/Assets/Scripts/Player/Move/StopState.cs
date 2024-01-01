@@ -12,9 +12,19 @@ public class StopState : State
         _storedPlayer = player;
     }
 
+    bool GoToMoveState()
+    {
+        bool isGameClear = _storedPlayer.IsGameClear.Invoke();
+        bool IsGamePause = _storedPlayer.IsGamePause.Invoke();
+        bool IsGameOver = _storedPlayer.IsGameOver.Invoke();
+        bool nowMouseMove = Input.GetAxisRaw("Mouse X") != 0;
+
+        return IsGameOver == false && isGameClear == false && IsGamePause == false && nowMouseMove == true;
+    }
+
     public override void CheckStateChange()
     {
-        if(Input.GetAxisRaw("Mouse X") != 0) // 마우스 움직임 감지 시
+        if(GoToMoveState()) // 마우스 움직임 감지 시
         {
             _storedPlayer.MovementFSM.SetState(PlayerController.MovementState.Move);
         }
