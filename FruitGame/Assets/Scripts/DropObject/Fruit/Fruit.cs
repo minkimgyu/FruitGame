@@ -4,18 +4,23 @@ using UnityEngine;
 using System;
 using FSM;
 
-public class Trickle : MonoBehaviour
+public class Fruit : BaseDropObject
 {
     public enum Message
     {
-        ContactWhenFalling
+        None,
+        GoToLandAfterFalling,
+        GoToLandAfterMerge,
+        GoToLandAfterHighlight,
     }
 
     public enum PositionState
     {
+        Init,
         Ready,
         Falling,
-        Land
+        Land,
+        Highlight
     }
 
     public enum Type
@@ -47,8 +52,8 @@ public class Trickle : MonoBehaviour
     public CapsuleCollider2D Collider { get { return _collider; } }
 
 
-    StateMachine<PositionState> _positionFSM;
-    public StateMachine<PositionState> PositionFSM { get { return _positionFSM; } }
+    TrickleStateMachine<PositionState> _fSM;
+    public TrickleStateMachine<PositionState> FSM { get { return _fSM; } }
 
     // Active되는 환경을 만들어주기
     // 예를 들어, 떨어져서 물에 닿은 경우 사운드를 주고 이후에는 사운드 없음 --> 이런 식
@@ -57,10 +62,10 @@ public class Trickle : MonoBehaviour
     //bool _spawnByMerge = true;
 
     public Action<Type, Vector3> OnSpawnRequested;
-    public Action<Trickle, Trickle> OnDestroyRequested;
+    public Action<Fruit, Fruit> OnDestroyRequested;
     public Action OnWaterDecreaseRequested;
 
-    public void Initialize(Action<Type, Vector3> onSpawnRequested, Action<Trickle, Trickle> onDestroyRequested, Action onWaterDecreaseRequested)
+    public void Initialize(Action<Type, Vector3> onSpawnRequested, Action<Fruit, Fruit> onDestroyRequested, Action onWaterDecreaseRequested)
     {
         OnSpawnRequested = onSpawnRequested;
         OnDestroyRequested = onDestroyRequested;
@@ -73,26 +78,38 @@ public class Trickle : MonoBehaviour
     {
         Dictionary<PositionState, BaseState> positionStates = new Dictionary<PositionState, BaseState>();
 
-        _positionFSM = new StateMachine<PositionState>();
+        _fSM = new TrickleStateMachine<PositionState>();
 
+        BaseState init = new InitState(this);
         BaseState below = new ReadyState(this);
         BaseState warning = new FallingState(this);
         BaseState above = new LandState(this);
+        BaseState highlight = new HighlightState(this);
 
+        positionStates.Add(PositionState.Init, init);
         positionStates.Add(PositionState.Ready, below);
         positionStates.Add(PositionState.Falling, warning);
         positionStates.Add(PositionState.Land, above);
 
-        _positionFSM.Initialize(positionStates);
+        positionStates.Add(PositionState.Highlight, highlight);
+
+        _fSM.Initialize(positionStates);
+        _fSM.SetState(PositionState.Init);
     }
 
-    public void ResetState(PositionState state)
-    {
-        _positionFSM.SetState(state);
-    }
+    public PositionState ReturnStateName() { return _fSM.CurrentStateName; }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        _positionFSM.OnCollision2DEnter(collision);
-    }
+    private void OnCollisionEnter2D(Collision2D collision) => _fSM.OnCollision2DEnter(collision);
+
+    private void OnCollisionExit2D(Collision2D collision) => _fSM.OnCollision2DExit(collision);
+
+    public override void OnSpawn() => _fSM.OnSpawn();
+
+    public override void OnReady() => _fSM.OnReady();
+
+    public override void OnDrop() => _fSM.OnDrop();
+
+    public override void OnLand() => _fSM.OnLand();
+
+    public override void OnHighlight() => _fSM.OnHighlight();
 }

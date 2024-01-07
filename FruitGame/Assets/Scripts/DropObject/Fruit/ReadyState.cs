@@ -5,11 +5,11 @@ using FSM;
 
 public class ReadyState : State
 {
-    Trickle _storedTrickle;
+    Fruit _storedTrickle;
     float _gravityScale = 0f;
     string _readySortingLayerName = "Cloud";
 
-    public ReadyState(Trickle trickle)
+    public ReadyState(Fruit trickle)
     {
         _storedTrickle = trickle;
     }
@@ -19,5 +19,10 @@ public class ReadyState : State
         _storedTrickle.Rigid.gravityScale = _gravityScale;
         _storedTrickle.Collider.enabled = false;
         _storedTrickle.SpriteRender.sortingLayerName = _readySortingLayerName;
+    }
+
+    public override void OnDropRequested()
+    {
+        _storedTrickle.FSM.SetState(Fruit.PositionState.Falling); // FallingState∑Œ ¿Ãµø
     }
 }

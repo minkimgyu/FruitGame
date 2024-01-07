@@ -58,7 +58,7 @@ public class WaterSpring : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag.Equals(dropItemTag)) {
-            Trickle trickle = other.gameObject.GetComponent<Trickle>();
+            Fruit trickle = other.gameObject.GetComponent<Fruit>();
             if (trickle == null) return;
 
             var speed = trickle.Rigid.velocity;

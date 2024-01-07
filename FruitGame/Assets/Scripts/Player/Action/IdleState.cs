@@ -27,7 +27,8 @@ public class IdleState : State
         // 게임이 끝났거나 일시 정지 중일 경우 실행 중지
 
         // 마우스 클릭 감지 시 and 떨어뜨릴 과일이 있는 경우 
-        if (Input.GetMouseButtonDown(0) && _storedPlayer.OnCanDropRequested()) 
+        // Input.GetMouseButtonDown(0)
+        if (Input.GetKeyDown(KeyCode.Space) && _storedPlayer.OnCanDropRequested()) 
         {
             _storedPlayer.ActionFSM.SetState(PlayerController.ActionState.Drop);
         }

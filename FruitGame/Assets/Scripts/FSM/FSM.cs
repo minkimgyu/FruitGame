@@ -4,45 +4,30 @@ using UnityEngine;
 
 namespace FSM
 {
-    abstract public class State : BaseState
-    {
-        public override void CheckStateChange() { }
-
-        public override void OnMessageReceived() { }
-
-        public override void OnMessageReceived(Trickle.Message message, Collision2D collision) { }
-        // 여기에 메시지도 같이 전달 ㄱㄱㄱ
-
-        public override void OnStateFixedUpdate() { }
-
-        public override void OnStateLateUpdate() { }
-
-        public override void OnStateCollision2DEnter(Collision2D collision) { }
-
-
-        public override void OnStateEnter() { }
-
-        public override void OnStateUpdate() { }
-
-        public override void OnStateExit() { }
-    }
-
     abstract public class BaseState
     {
         public abstract void CheckStateChange();
 
-        public abstract void OnMessageReceived();
+        public abstract void OnMessageReceived(Fruit.Message message);
 
-        public abstract void OnMessageReceived(Trickle.Message message, Collision2D collision); 
-        // 여기에 메시지도 같이 전달 ㄱㄱㄱ
+        public abstract void OnMessageReceived(Fruit.Message message, Collision2D collision);
 
-        public abstract void OnStateFixedUpdate();
+        public abstract void OnMessageReceived(Fruit.Message message, Fruit fruit, Vector3 contactPos);
 
-        public abstract void OnStateLateUpdate();
 
-        public abstract void OnStateCollision2DEnter(Collision2D collision);
+        public abstract void OnCollision2DEnterRequested(Collision2D collision);
 
-        public abstract void OnSpawnRequested(); // 오브젝트가
+        public abstract void OnCollision2DExitRequested(Collision2D collision);
+
+        public abstract void OnReadyRequested();
+
+        public abstract void OnDropRequested();
+
+        public abstract void OnSpawnRequested();
+
+        public abstract void OnLandRequested();
+
+        public abstract void OnHighlightRequested();
 
 
         public abstract void OnStateEnter();
@@ -52,17 +37,50 @@ namespace FSM
         public abstract void OnStateExit();
     }
 
+    abstract public class State : BaseState
+    {
+        public override void CheckStateChange() { }
+
+
+        public override void OnMessageReceived(Fruit.Message message) { }
+
+        public override void OnMessageReceived(Fruit.Message message, Collision2D collision) { }
+        
+        public override void OnMessageReceived(Fruit.Message message, Fruit fruit, Vector3 contactPos) { }
+
+
+        public override void OnCollision2DEnterRequested(Collision2D collision) { }
+
+        public override void OnCollision2DExitRequested(Collision2D collision) { }
+
+        public override void OnReadyRequested() { }
+
+        public override void OnDropRequested() { }
+
+        public override void OnSpawnRequested() { }
+
+        public override void OnLandRequested() { }
+
+        public override void OnHighlightRequested() { }
+
+        public override void OnStateEnter() { }
+
+        public override void OnStateUpdate() { }
+
+        public override void OnStateExit() { }
+    }
+
     public class StateMachine<T>
     {
-        Dictionary<T, BaseState> _stateDictionary = new Dictionary<T, BaseState>();
+        protected Dictionary<T, BaseState> _stateDictionary = new Dictionary<T, BaseState>();
 
-        T _currentStateName;
+        protected T _currentStateName;
 
         public T CurrentStateName { get { return _currentStateName; } }
 
         //현재 상태를 담는 프로퍼티.
-        BaseState _currentState;
-        BaseState _previousState;
+        protected BaseState _currentState;
+        protected BaseState _previousState;
 
         public void Initialize(Dictionary<T, BaseState> stateDictionary)
         {
@@ -72,30 +90,12 @@ namespace FSM
             _stateDictionary = stateDictionary;
         }
 
-        public void OnCollision2DEnter(Collision2D collision)
-        {
-            if (_currentState == null) return;
-            _currentState.OnStateCollision2DEnter(collision);
-        }
-       
-
         public void OnUpdate()
         {
             if (_currentState == null) return;
-            _currentState.OnStateUpdate();
+
             _currentState.CheckStateChange();
-        }
-
-        public void OnFixedUpdate()
-        {
-            if (_currentState == null) return;
-            _currentState.OnStateFixedUpdate();
-        }
-
-        public void OnLateUpdate()
-        {
-            if (_currentState == null) return;
-            _currentState.OnStateLateUpdate();
+            _currentState.OnStateUpdate();
         }
 
         public bool RevertToPreviousState()
@@ -109,12 +109,6 @@ namespace FSM
         {
             _currentStateName = stateName;
             return ChangeState(_stateDictionary[stateName]);
-        }
-
-        public bool SetState(T stateName, Trickle.Message message, Collision2D collision)
-        {
-            _currentStateName = stateName;
-            return ChangeState(_stateDictionary[stateName], message, collision);
         }
 
         #endregion
@@ -147,7 +141,106 @@ namespace FSM
             return true;
         }
 
-        bool ChangeState(BaseState state, Trickle.Message message, Collision2D collision)
+        #endregion
+    }
+
+    public class TrickleStateMachine<T> : StateMachine<T>
+    {
+        public void OnCollision2DEnter(Collision2D collision)
+        {
+            if (_currentState == null) return;
+            _currentState.OnCollision2DEnterRequested(collision);
+        }
+
+        public void OnCollision2DExit(Collision2D collision)
+        {
+            if (_currentState == null) return;
+            _currentState.OnCollision2DExitRequested(collision);
+        }
+
+        public void OnReady() 
+        {
+            if (_currentState == null) return;
+            _currentState.OnReadyRequested();
+        }
+
+        public void OnDrop() 
+        {
+            if (_currentState == null) return;
+            _currentState.OnDropRequested();
+        }
+
+        public void OnSpawn() 
+        {
+            if (_currentState == null) return;
+            _currentState.OnSpawnRequested();
+        }
+
+        public void OnLand()
+        {
+            if (_currentState == null) return;
+            _currentState.OnLandRequested();
+        }
+
+        public void OnHighlight()
+        {
+            if (_currentState == null) return;
+            _currentState.OnHighlightRequested();
+        }
+
+
+        #region SetState
+
+        public bool SetState(T stateName, Fruit.Message message)
+        {
+            _currentStateName = stateName;
+            return ChangeState(_stateDictionary[stateName], message);
+        }
+
+        public bool SetState(T stateName, Fruit.Message message, Collision2D collision)
+        {
+            _currentStateName = stateName;
+            return ChangeState(_stateDictionary[stateName], message, collision);
+        }
+
+        public bool SetState(T stateName, Fruit.Message message, Fruit fruit, Vector3 contactPos)
+        {
+            _currentStateName = stateName;
+            return ChangeState(_stateDictionary[stateName], message, fruit, contactPos);
+        }
+
+        #endregion
+
+
+        #region ChangeState
+
+        bool ChangeState(BaseState state, Fruit.Message message)
+        {
+            if (_stateDictionary.ContainsValue(state) == false) return false;
+
+            if (_currentState == state) // 같은 State로 전환하지 못하게 막기
+            {
+                return false;
+            }
+
+            if (_currentState != null) //상태가 바뀌기 전에, 이전 상태의 Exit를 호출
+                _currentState.OnStateExit();
+
+            _previousState = _currentState;
+
+            _currentState = state;
+
+
+            if (_currentState != null) //새 상태의 Enter를 호출한다.
+            {
+                _currentState.OnMessageReceived(message);
+                _currentState.OnStateEnter();
+            }
+
+            return true;
+        }
+
+        bool ChangeState(BaseState state, Fruit.Message message, Collision2D collision)
         {
             if (_stateDictionary.ContainsValue(state) == false) return false;
 
@@ -167,6 +260,32 @@ namespace FSM
             if (_currentState != null) //새 상태의 Enter를 호출한다.
             {
                 _currentState.OnMessageReceived(message, collision);
+                _currentState.OnStateEnter();
+            }
+
+            return true;
+        }
+
+        bool ChangeState(BaseState state, Fruit.Message message, Fruit fruit, Vector3 contactPos)
+        {
+            if (_stateDictionary.ContainsValue(state) == false) return false;
+
+            if (_currentState == state) // 같은 State로 전환하지 못하게 막기
+            {
+                return false;
+            }
+
+            if (_currentState != null) //상태가 바뀌기 전에, 이전 상태의 Exit를 호출
+                _currentState.OnStateExit();
+
+            _previousState = _currentState;
+
+            _currentState = state;
+
+
+            if (_currentState != null) //새 상태의 Enter를 호출한다.
+            {
+                _currentState.OnMessageReceived(message, fruit, contactPos);
                 _currentState.OnStateEnter();
             }
 

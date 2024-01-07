@@ -5,11 +5,11 @@ using FSM;
 
 public class FallingState : State
 {
-    Trickle _storedTrickle;
+    Fruit _storedTrickle;
     float _gravityScale = 1f;
     string _fallingSortingLayerName = "Bowl";
 
-    public FallingState(Trickle trickle)
+    public FallingState(Fruit trickle)
     {
         _storedTrickle = trickle;
     }
@@ -21,9 +21,8 @@ public class FallingState : State
         _storedTrickle.SpriteRender.sortingLayerName = _fallingSortingLayerName;
     }
 
-    public override void OnStateCollision2DEnter(Collision2D collision)
+    public override void OnCollision2DEnterRequested(Collision2D collision)
     {
-        _storedTrickle.PositionFSM.
-            SetState(Trickle.PositionState.Land, Trickle.Message.ContactWhenFalling, collision);
+        _storedTrickle.FSM.SetState(Fruit.PositionState.Land, Fruit.Message.GoToLandAfterFalling, collision);
     }
 }
